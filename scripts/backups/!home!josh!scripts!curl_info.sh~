@@ -1,0 +1,7 @@
+#!/bin/sh
+
+export http_proxy="http://josh:QEF1632YUH64128bat@139.59.145.204:3128/"
+export https_proxy="http://josh:QEF1632YUH64128bat@139.59.145.204:3128/"
+export ftp_proxy="http://josh:QEF1632YUH64128bat@139.59.145.204:3128/"
+
+curl http://hiesenburg:3128/squid-internal-mgr/info

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+line=`tail -n 1 ~/mnt/160503\ Customer\ Cancelled\ List.csv`
+
+echo `$line`
+
+if [[ -z "$line" ]] ; then
+echo "Completed"
+exit 0
+else
+echo "Removing $line"
+sed -i /$line/d ~/mnt/160503\ Edubase\ Data\ for\ Josh.csv
+sed -i /$line/d ~/mnt/160503\ Customer\ Cancelled\ List.csv
+#$0 &
+fi
+
+exit 0

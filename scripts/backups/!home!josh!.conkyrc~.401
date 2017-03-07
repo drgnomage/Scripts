@@ -1,0 +1,80 @@
+######################
+# - Conky settings - #
+######################
+update_interval 1
+total_run_times 0
+net_avg_samples 1
+cpu_avg_samples 1
+
+imlib_cache_size 0
+double_buffer yes
+no_buffers yes
+
+#####################
+# - Text settings - #
+#####################
+use_xft yes
+xftfont Hack:style=Bold:size=8
+override_utf8_locale yes
+text_buffer_size 2048
+
+#############################
+# - Window specifications - #
+#############################
+own_window_class Conky
+own_window no
+own_window_type override
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+#own_window_argb_visual yes
+#own_window_argb_value 100
+
+alignment tl
+gap_x -4
+gap_y -2
+minimum_size 350 900
+
+
+draw_graph_borders no
+show_graph_scale no
+
+default_bar_size 60 8
+
+#########################
+# - Graphics settings - #
+#########################
+draw_shades no
+
+default_color efefef
+default_shade_color 1d1d1d
+color dddddd
+color0 ffdd33
+color1 ff33ff
+color2 33ddff
+
+TEXT
+${voffset 10}
+${goto 40}CPU1: ${font Hack:style=Bold:size=10}${color1}${cpu cpu1}%${font}${color} ${goto 135}${cpubar cpu1 9,95} ${goto 240}${voffset -1}Temp: ${color1}${font Hack:style=Bold:size=10}${color1}${execi 30 sensors | grep 'Core 0' | awk '{print $3}' | cut -c 2-5}°C${color}${font}  
+
+${goto 40}CPU2: ${font Hack:style=Bold:size=10}${color1}${cpu cpu2}%${font}${color} ${goto 135}${cpubar cpu2 9,95} ${goto 240}${voffset 0}Temp: ${color1}${font Hack:style=Bold:size=10}${execi 30 sensors | grep 'Core 1' | awk '{print $3}' | cut -c 2-5}°C${color}${font}  
+
+${voffset +17}${goto 40}RAM: ${color1} ${font}${memperc}%${font}${color}${font}${font}  ${goto 170}${voffset -2}${membar 9,160}${color}${font}
+${voffset +2}${goto 40}Root:${color1} ${font}${fs_used_perc /}%${font}${color}${font}${font}  ${goto 170}${voffset -2}${fs_bar 9,160 /}${color}${font}
+${voffset +2}${goto 40}Home:${color1} ${font}${fs_used_perc /home}%${font}${color}${font}${font}  ${goto 170}${voffset -2}${fs_bar 9,160 /home}${color}${font}
+
+${voffset +25}${goto 40}${font}${voffset -6}Down: ${font}${color1}${goto 148}${downspeed enp2s0}${color}${font}${voffset +2}${color0}${font Hack:size=13}${font}${color}${goto 240}${voffset -10}Local IP: ${alignr 60}
+
+${goto 40}${font}Upload:   ${font}${color1}${voffset 0}${goto 148}${upspeed enp2s0}${color}${font Hack:style=Bold:size=12}${voffset -18}${goto 210}${color2}${addr enp2s0}${color}
+
+
+${voffset -3}${goto 399}${font}CPU
+${goto 399}${cpugraph cpu0 30,290 33ddff ff33ff -t}
+
+${voffset +5}${goto 399}${font}DISK
+${goto 399}${diskiograph /dev/sda 30,290 33ddff ff33ff -t}
+
+${voffset +8}${goto 399}${font}NETWORK
+${goto 399}${downspeedgraph enp2s0 30,140 33ddff ff33ff -t}${goto 579}${upspeedgraph enp2s0 30,140 33ddff ff33ff -t}
+
+${image ~/.conky/base.png -p 20,0 -s 339x86}${image ~/.conky/base.png -p 20,75 -s 339x86}${image ~/.conky/base.png -p 20,150 -s 339x86}
+${image ~/.conky/base.png -p 379,0 -s 339x86}${image ~/.conky/base.png -p 379,75 -s 339x86}${image ~/.conky/base.png -p 379,175 -s 339x86}

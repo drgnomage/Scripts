@@ -1,0 +1,108 @@
+own_window no
+own_window_transparent no
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_class Conky
+own_window_title Conky
+#own_window_type override
+out_to_console no
+use_xft yes
+update_interval .3
+cpu_avg_samples 2
+net_avg_samples 2
+double_buffer yes
+maximum_width 330
+minimum_size 120 900
+draw_shades no
+draw_outline no
+draw_borders no
+stippled_borders 0
+border_width 20
+default_color 000000
+default_shade_color 000000
+default_outline_color 000000
+alignment top_right
+gap_x -5
+gap_y 15
+use_spacer left
+no_buffers yes
+uppercase no
+background yes
+own_window_argb_value 200
+
+font Source Code Pro for Powerline:size=10:antialias=true
+
+color1 8f9d6a
+color2 202020
+color3 7587a6
+color4 ccc
+color5 eee
+
+TEXT
+$color1│
+├─┬────╼ $color5${font Source Code Pro for Powerline:style=bold:size=10:antialias=true}CPU$color1$font
+│${offset 7}├───╼$color5 Cpu0 ${offset 6}$color3 ${cpubar cpu1 7,215}$color1
+│${offset 7}├───╼$color5 Cpu1 ${offset 6}$color3 ${cpubar cpu2 7,215}$color1
+│${offset 7}├───╼$color5 Cpu2 ${offset 6}$color3 ${cpubar cpu3 7,215}$color1
+│${offset 7}└───╼$color5 Cpu3 ${offset 6}$color3 ${cpubar cpu4 7,215}$color1
+│
+├─┬────╼ $color5${font Source Code Pro for Powerline:style=bold:size=10:antialias=true}RAM$color1$font
+│${offset 7}├───╼$color5 Ram ${offset 10}$color3 ${membar 7,215}$color1
+│${offset 7}└───╼$color5 Swap ${offset 7}$color3 ${swapbar 7,215}$color1
+│
+├─┬────╼ $color5${font Source Code Pro for Powerline:style=bold:size=10:antialias=true}Storage$color1$font
+│${offset 7}├───╼$color5 Home ${offset 3}$color3 ${fs_bar 7,215 /home}$color1
+│${offset 7}├───╼$color5 Mnt ${offset 16}$color3 ${fs_bar 7,215 /home/josh/mnt}$color1
+│${offset 7}└───╼$color5 Root ${offset 10}$color3 ${fs_bar 7,215 /}$color1
+│
+├─┬────╼ $color5${font Source Code Pro for Powerline:style=bold:size=10:antialias=true}Top CPU Consumption$color1$font
+│${offset 7}├───╼$color5 ${top_time name 1} $color3 ${alignr} [$color4 ${top_time time 1} $color3] $color1 .
+│${offset 7}├───╼$color5 ${top_time name 2} $color3 ${alignr} [$color4 ${top_time time 2} $color3] $color1 .
+│${offset 7}└───╼$color5 ${top_time name 3} $color3 ${alignr} [$color4 ${top_time time 3} $color3] $color1 .
+│
+├─┬────╼ $color5${font Source Code Pro for Powerline:style=bold:size=10:antialias=true}Top Ram Consumption$color1$font
+│${offset 7}├───╼$color5 ${top_mem name 1} $color3 ${alignr} [$color4 ${top_mem mem 1}% $color3] $color1 .
+│${offset 7}├───╼$color5 ${top_mem name 2} $color3 ${alignr} [$color4 ${top_mem mem 2}% $color3] $color1 .
+│${offset 7}└───╼$color5 ${top_mem name 3} $color3 ${alignr} [$color4 ${top_mem mem 3}% $color3] $color1 .
+│
+├─┬─┬──╼ $color5${font Source Code Pro for Powerline:style=bold:size=10:antialias=true}System$color1$font
+│${offset 7}│${offset 7}├─╼$color5 Current User $color3    ${alignr} [$color4 ${exec whoami} $color3] $color1  
+│${offset 7}│${offset 7}├─╼$color5 Kernel Version $color3  ${alignr} [$color4 ${exec uname -r | awk '{print tolower($0)}'} $color3] $color1  
+│${offset 7}│${offset 7}├─╼$color5 CPU Model $color3       ${alignr} [$color4 ${exec cat /proc/cpuinfo  | grep -m1 'model name' | cut -c 14-40 }$color3] $color1  
+│${offset 7}│${offset 7}├─╼$color5 Total Memory $color3    ${alignr} [$color4 $memmax $color3]$color1   
+│${offset 7}│${offset 7}└─╼$color5 Load $color3            ${alignr} [$color4 ${loadavg 1} ${loadavg 2} ${loadavg 3} $color3]$color1   
+│${offset 7}│ 
+│${offset 7}└─┬──╼ $color5${font Source Code Pro for Powerline:style=bold:size=10:antialias=true}Other$color1$font
+│${offset 21}├─╼$color5 Entropy $color3         ${alignr} [$color4 $entropy_avail / $entropy_poolsize $color3]$color1   
+│${offset 21}└─╼$color5 Packages $color3        ${alignr} [$color4 ${execi 10000 pacman -Q|wc -l} $color3]$color1   
+│ 
+├─┬─┬──╼ $color5${font Source Code Pro for Powerline:style=bold:size=10:antialias=true}Network$color1$font
+│${offset 7}│${offset 7}└─╼$color5 Hostname $color3          ${alignr} [$color4 ${exec cat /etc/hostname} $color3] $color1  
+│${offset 7}│
+│${offset 7}├─┬──╼ $color5${font Source Code Pro for Powerline:style=bold:size=10:antialias=true}External$color1$font
+│${offset 7}│${offset 7}└─╼$color5 Remote IP $color3         ${alignr} [$color4 ${execi 30 curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'} $color3] $color1  
+│${offset 7}│
+│${offset 7}└─┬──╼ $color5${font Source Code Pro for Powerline:style=bold:size=10:antialias=true}Wired$color1$font
+│${offset 21}├─╼$color5 Local addr $color3    ${alignr} [$color4 ${addr eth0} $color3] $color1  
+│${offset 21}├─╼$color5 Download Speed ${alignr} $color3[$color4 ${downspeed eth0} $color3] $color1  
+│${offset 21}└─╼$color5 Upload Speed   ${alignr} $color3[$color4 ${upspeed eth0} $color3] $color1  
+│ 
+├─┬────╼ $color5${font Source Code Pro for Powerline:style=bold:size=10:antialias=true}Remote$color1$font
+│${offset 7}│
+│${offset 7}├─┬──╼ $color5${font Source Code Pro for Powerline:style=bold:size=10:antialias=true}Glitchbusters$color1$font
+│${offset 7}│${offset 7}└─╼$color5 Status $color3 [$color4 ${execi 30 ~/.bin/host_check.sh glitchbusters.info } $color3] $color5 ${alignr} ping $color3 [$color4 ${execi 10 ~/.bin/host_latency.sh glitchbusters.info } $color3] $color1  
+│${offset 7}│
+│${offset 7}├─┬──╼ $color5${font Source Code Pro for Powerline:style=bold:size=10:antialias=true}Media$color1$font
+│${offset 7}│${offset 7}└─╼$color5 Status $color3 [$color4 ${execi 34 ~/.bin/host_check.sh glitchbusters.info} $color3] $color5 ${alignr} ping $color3 [$color4 ${execi 10 ~/.bin/host_latency.sh glitchbusters.info} $color3] $color1  
+│${offset 7}│
+│${offset 7}├─┬──╼ $color5${font Source Code Pro for Powerline:style=bold:size=10:antialias=true}Starbound$color1$font
+│${offset 7}│${offset 7}└─╼$color5 Status $color3 [$color4 ${execi 38 ~/.bin/host_check.sh starbound.glitchbusters.info } $color3] $color5 ${alignr} ping $color3 [$color4 ${execi 10 ~/.bin/host_latency.sh starbound.glitchbusters.info } $color3] $color1  
+│${offset 7}│
+│${offset 7}├─┬──╼ $color5${font Source Code Pro for Powerline:style=bold:size=10:antialias=true}10.0.0.1$color1$font
+│${offset 7}│${offset 7}└─╼$color5 Status $color3 [$color4 ${execi 42 ~/.bin/host_check.sh 10.0.0.1 } $color3] $color5 ${alignr} ping $color3 [$color4 ${execi 10 ~/.bin/host_latency.sh 10.0.0.1 } $color3] $color1  
+│${offset 7}│
+│${offset 7}└─┬──╼ $color5${font Source Code Pro for Powerline:style=bold:size=10:antialias=true}172.20.1.52$color1$font
+│${offset 21}└─╼$color5 Status $color3 [$color4 ${execi 46 ~/.bin/host_check.sh 172.20.1.52 } $color3] $color5 ${alignr} ping $color3 [$color4 ${execi 10 ~/.bin/host_latency.sh 172.20.1.52 } $color3] $color1  
+│
+│
+│
+└───────────────────────────────╼ $color5${font Source Code Pro for Powerline:style=bold:size=10:antialias=true}${uptime}$color1$font

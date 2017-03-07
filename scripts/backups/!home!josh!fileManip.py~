@@ -1,0 +1,83 @@
+#!/usr/bin/python
+#,Name,RED,GREEN,BLUE,YELLOW,GOLD,SILVER,CRYSTAL,RUBY,SAPPHIRE,FIRERED,LEAFGREEN,EMERALD,COLOSSEUM,XD,DIAMOND,PEARL,PLATINUM,HEARTGOLD,SOULSILVER,POKEWALKER,BLACK,WHITE,BLACK2,WHITE2,DREAMWORLD,X,Y,OMEGARUBY,ALPHASAPPHIRE,FRIEND SAFARI,Sun,MOON
+
+def isGettable(letter):
+    if(letter=='C' or letter=='S' or letter=='R' or letter=='E' or letter=='B'):
+        return 1
+    if(letter=='U'):
+        return -1
+    return 0
+
+def combine(array):
+
+    
+    
+    combined=0
+    unavailable=1
+    for v in array:
+
+        #calculate
+        var=isGettable(csv[v])
+        
+        if(var==1):
+            combined=1;
+        if(var!=-1):
+            unavailable=0;
+
+    if(unavailable==1):
+        return -1;
+    else:
+        return combined;
+        
+
+
+
+
+red=2
+green=3
+blue=4
+yellow=5
+gold=6
+silver=7
+crystal=8
+ruby=9
+sapphire=10
+firered=11
+leafgreen=12
+emerald=13
+colo=14
+xd=15
+diamond=16
+pearl=17
+platinum=18
+heartgold=19
+soulsilver=20
+pokewalker=21
+black=22
+white=23
+black2=24
+white2=25
+dream=26
+x=27
+y=28
+omegaruby=29
+alphasapphire=30
+friendsafari=31
+sun=32
+moon=33
+global csv
+
+f = open("pokeav.csv", 'r')
+count=0
+for line in f.readlines():
+    csv=str.split(line,",")
+    
+
+    COMBO=combine([y,alphasapphire,moon,pearl,black,white2])
+    
+    if(COMBO==1):
+        count+=1
+    else:
+        if(COMBO!=-1):
+            print(csv[1])
+print(count)

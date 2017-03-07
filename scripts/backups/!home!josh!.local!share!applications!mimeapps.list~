@@ -1,0 +1,4 @@
+
+[Default Applications]
+x-scheme-handler/tg=telegramdesktop.desktop
+text/html=userapp-Firefox-D350OY.desktop

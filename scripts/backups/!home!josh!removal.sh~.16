@@ -1,0 +1,15 @@
+#!/bin/bash
+
+line=`cat ~/mnt/160503\ Customer\ Cancelled\ List\ edit.csv| awk '{print}' ORS=' '`
+
+#echo `$line`
+
+if [[ -z "$line" ]] ; then
+echo "Completed"
+exit 0
+else
+echo "Removing $line"
+grep -vf $line ~/mnt/160503\ Edubase\ Data\ for\ Josh.csv > ~/mnt/160503\ Edubase\ Data\ for\ Josh\ eddited\ rm.csv
+fi
+
+exit 0

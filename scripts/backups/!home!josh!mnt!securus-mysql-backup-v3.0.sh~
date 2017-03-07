@@ -1,0 +1,110 @@
+#!/bin/sh
+###Backup Script v3.0###
+
+# Define variables
+scripttype="hadoop-backup"
+servername=$(cat /etc/hostname)
+remotepath="hadoop-backup/"
+nasname="NAS"
+nasip="172.20.1.20"
+user="josh"
+email="josh.fowler@securus-software.com"
+
+# Variables that require variables
+log="/var/log/securus/$scripttype/hadoop.log"
+errorlog="/var/log/securus/$scripttype/hadoop-error.log"
+
+# If variables
+reach=$(ping $nasip -c 1 | grep -c Unreachable)
+logfolder=$(find /var/log/ -name $scripttype | grep -c $scripttype)
+pigz=$(find /usr/bin/ -name "pigz" | grep -c "pigz")
+sshfs=$(find /usr/bin/ -name "sshfs" | grep -c "sshfs")
+keyfile=$(find ~/.ssh/ -name "id_rsa.pub" | grep -c "id_rsa.pub")
+hadoopsize=$(du -sh /var/lib/securus/ | awk '{print $1}')
+
+if [ $keyfile = "0" ] ; then
+ssh-keygen
+fi
+
+if [ $logfolder = "0" ] ; then
+mkdir -p /var/log/securus/$scripttype/
+fi
+
+if [ $pigz = "0" ] ; then
+apt-get update
+apt-get install pigz -y --force-yes
+fi
+
+if [ $sshfs = "0" ] ; then
+apt-get update
+apt-get install sshfs -y --force-yes
+fi
+
+{
+echo "### Securus Backup Log ###"
+echo " "
+date=$(date +'%d-%m-%Y')
+time=$(date +'%H:%M:%S')
+echo "Starting on $date on $time"
+echo "Hadoop size is $hadoopsize."
+
+if [ $reach = "0" ] ; then
+mkdir -p /mnt/$scripttype/
+ssh-copy-id $user@$nasip  2> /dev/null
+sshfs $user@$nasip:/$nasname/$servername/$remotepath /mnt/$scripttype
+mounts=$(df -h | grep -c $nasip)
+elif [ $reach = 1 ] ; then
+echo "Error $nasname is unreachable, is $nasip is pingable?"
+cat $log $errorlog | sendmail $email
+exit 1
+else
+echo "Error reaching the mount variable, please contact the script creator or implement a fix."
+cat $log $errorlog | sendmail $email
+exit 1
+fi
+
+if [ $mounts = "0" ] ; then
+echo "Error $nasname did not mount correctly."
+echo "Unmounting the possible failed mount."
+fusermount -u /mnt/$scripttype/
+echo "Restarting backup in 5 minutes."
+sleep 300
+$0
+cat $log $errorlog | sendmail $email
+exit 0
+elif [ $mounts -gt "0" ] ; then
+echo "$nasname mounted correctly."
+echo "Making folder $nasip:/$nasname/$servername/$remotepath$date/."
+mkdir -p /mnt/$scripttype/$date/
+echo "Taring the hadoop folder."
+tar -cP --use-compress-program=pigz /var/lib/securus | openssl aes-256-cbc -salt > /mnt/$scripttype/$date/securus-$servername-hadoop.tar.gz.aes -k RJP0eLStOYrEOubqm08triGYjo2lDLbRpLGxbegnnXbcnsFdv6
+else
+echo "Error mounting the mount variable, please contact the script creator or implement a fix."
+cat $log $errorlog | sendmail $email
+exit 1
+fi
+
+backupsize=$(du -sh /mnt/$scripttype/$date/ | awk '{print $1}')
+echo "Backup size is $backupsize."
+echo "Syncing changes."
+sync
+echo "Unmounting external volume."
+fusermount -u /mnt/$scripttype/
+#Check that unounting was successful
+mounts=$(df -h | grep -c $nasip)
+
+if [ $mounts = "0" ] ; then
+echo "$nasname unmounted correctly."
+else
+echo "Error unmounting the mount variable, please contact the script creator or implement a fix."
+cat $log $errorlog | sendmail $email
+exit 1
+fi
+
+date=$(date +'%d-%m-%Y')
+time=$(date +'%H:%M:%S')
+echo "Finishing at $date on $time"
+echo " "
+echo "### Securus Backup Log ###"
+} > $log 2> $errorlog
+exit 0

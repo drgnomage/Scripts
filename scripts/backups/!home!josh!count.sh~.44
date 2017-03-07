@@ -1,0 +1,9 @@
+#!/bin/bash
+
+number=/home/josh/number
+var=`cat $number`
+vars=$((var+1))
+
+echo $vars > $number
+
+#$0 &

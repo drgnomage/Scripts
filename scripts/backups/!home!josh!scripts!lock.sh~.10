@@ -1,0 +1,6 @@
+#!/bin/sh
+
+ssh 172.20.1.52 /home/josh/lock.sh &
+i3lock -f -c 2d2d2d -e -p default --ringcolor=d3d0c800 =0000a0bf --insidewrongcolor=ff8000bf --insidecolor=ffffffbf --ringvercolor=0020ffff --ringwrongcolor=4040ffff --textcolor=ffffffff --separatorcolor=aaaaaaff --keyhlcolor=30ccccff --bshlcolor=ff8000ff 
+
+ssh 172.20.1.52 killall i3lock &

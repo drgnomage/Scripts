@@ -1,0 +1,9 @@
+#!/bin/sh
+
+num=$1
+value=$((echo $2))
+one=$(($value + 1))
+
+echo $one > /home/josh/number
+
+$0 &

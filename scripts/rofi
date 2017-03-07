@@ -1,0 +1,5 @@
+#!/bin/sh
+
+PATH="/home/josh/scripts:/usr/bin"
+
+/usr/bin/rofi -show run

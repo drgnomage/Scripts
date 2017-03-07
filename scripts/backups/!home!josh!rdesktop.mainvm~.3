@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Run the RDP session
+rdesktop -5 -K -r disk:DB="/home/josh/Dropbox" -r disk:Home=/home/josh -r clipboard:CLIPBOARD -r sound:local -u josh.fowler@securus-software.com -p QEF1632YUH64128bat 172.20.2.9 -g 1920x1080 -a 24
+#rdesktop -5 -K -r clipboard:CLIPBOARD,sound:local,disk:Home=/home/josh,disk:Dropbox=/home/josh/Dropbox -u josh.fowler@securus-software.com -p QEF1632YUH64128bat 172.20.2.9 -g 1598x878 -a 24
+
+# Rerun on closing
+$0 &

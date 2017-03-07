@@ -1,0 +1,14 @@
+#!/bin/sh
+
+for i in /home/josh/mnt/*.csv; 
+do 
+count=$(cat $i | grep -c "Park View")
+if [[ -z "$count" ]]; then
+exit 0
+else 
+echo "found in $i"
+fi; done
+
+exit 0
+
+

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+[ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
+
+list="/root/.found.txt"
+archive="conf.tar.gz"
+D=`date +%d`
+M=`date +%m`
+Y=`date +%Y
+
+find / -path /run -prune -o ! -path /boot -prune -o ! -name "*.conf" ! -name "*.cfg" -fprint $list
+
+tar cvf -M --files-from=$list ~/$D-$M-$archive

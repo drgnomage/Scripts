@@ -1,0 +1,25 @@
+alignment       top_middle
+background      no
+border_width        0
+default_color       FFFFFF
+double_buffer       yes
+draw_borders        no
+draw_graph_borders  no
+draw_outline        no
+draw_shades     no
+gap_y           60
+no_buffers      yes
+own_window      yes
+own_window_argb_value   255
+own_window_argb_visual  yes
+own_window_hints    undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_transparent  yes
+own_window_type         desktop
+stippled_borders    0
+update_interval     1.0
+use_xft         yes
+xftalpha                0.8
+
+TEXT
+${font Ubuntu:size=7}CPU ${cpubar 3,80}${offset 60}MEM ${membar 3,80}${offset 60}SWAP ${swapbar 3,80}${offset 60}HOME ${fs_bar 3,80 /home}${offset 60}ROOT ${fs_bar 3,80 /}
+${font Ubuntu:size=16}${alignc}${if_existing /proc/net/route eth0}UP:  ${upspeed eth0}    DOWN:  ${downspeed eth0} $else UP:  ${upspeed ra0}    DOWN:  ${downspeed ra0}$endif${alignr}${acpitemp}°C

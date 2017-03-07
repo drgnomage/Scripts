@@ -1,0 +1,9 @@
+#!/bin/bash
+IP=$1
+fping -c1 -t300 $IP 2>/dev/null 1>/dev/null
+if [ "$?" = 0 ]
+then
+  echo "\${color 709080}online"
+else
+  echo "\${color DE7CA6}offline"
+fi

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+for i in `pacman -Qnq` ; do yaourt -S $i-git --force ; done

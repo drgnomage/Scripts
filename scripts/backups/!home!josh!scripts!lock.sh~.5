@@ -1,0 +1,6 @@
+#!/bin/sh
+
+ssh 172.20.1.52 /home/josh/lock.sh &
+i3lock-fancy -g -f roboto -d
+
+ssh 172.20.1.52 killall i3lock &

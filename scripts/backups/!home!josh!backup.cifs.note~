@@ -1,0 +1,3 @@
+credentials in /root/.smbcredentials
+install cifs-utils winbind
+//gfsfile01/Securus /external/ cifs username=svcSecurusBackup,password=C4ptur3,domain=Learning.Greenwich.private,iocharset=utf8,file_mode=0777,dir_mode=0777 0 0

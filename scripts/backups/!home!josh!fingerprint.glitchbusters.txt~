@@ -1,0 +1,12 @@
+pub   rsa3072 2017-01-06 [C]
+      681B AE6E C50B 9007 2457  C12A 1CEC 2B6B AC03 DBE6
+uid           [ unknown] Josh Fowler Key Phone <josh@glitchbusters.info>
+uid           [ unknown] Josh Fowler Key Phone <joshfowler@live.com>
+sub   rsa3072 2017-01-06 [S]
+sub   rsa3072 2017-01-06 [E]
+
+pub   rsa4096 2017-01-06 [SC] [expires: 2027-01-04]
+      0C60 6F5B C438 87E2 3EBA  417A 87F8 B3A7 ACDE A5D0
+uid           [ultimate] Josh Fowler (Bustin' makes me feel good!) <josh@glitchbusters.info>
+sub   rsa4096 2017-01-06 [E] [expires: 2027-01-04]
+

@@ -1,0 +1,78 @@
+Xft*dpi:		72
+Xft*antialias:	true
+Xft*hinting:	true
+Xft*rgba:		rgb
+Xft*autohint:	true
+Xft*hintstyle:	hintslight
+Xft*lcdfilter:	lcddefault
+
+*.foreground:   #E5E7EA
+*.background:   #2B2E37
+*.cursorColor:  #1685A6
+
+! black
+*.color0:       #1e1e1e
+*.color8:       #5f5a60
+! red
+*.color1:       #cf6a4c
+*.color9:       #cf6a4c
+! green
+*.color2:       #8f9d6a
+*.color10:      #8f9d6a
+! yellow
+*.color3:       #f9ee98
+*.color11:      #f9ee98
+! blue
+*.color4:       #7587a6
+*.color12:      #7587a6
+! magenta
+*.color5:       #9b859d
+*.color13:      #9b859d
+! cyan
+*.color6:       #afc4db
+*.color14:      #afc4db
+! white
+*.color7:       #a7a7a7
+*.color15:      #ffffff
+
+rofi*color-enabled: true
+rofi*color-window: #2B2E37, #2B2E37, #1e2529
+rofi*color-normal: #2B2E37, #c1c1c1, #2B2E37, #394249, #ffffff
+rofi*color-active: #2B2E37, #80cbc4, #2B2E37, #394249, #80cbc4
+rofi*color-urgent: #2B2E37, #ff1844, #2B2E37, #394249, #ff1844
+
+URxvt*perl-ext-common:      default,clipboard,resize-font,matcher,bell-command,url-select
+URxvt*url-select*underline: true
+URvxt*url-select*button:	1
+URxvt*url-select*launcher:	/usr/bin/exo-open
+URxvt*resize-font*bigger:	C-Up
+URxvt*resize-font*smaller:	C-Down
+URxvt*bell-command:			notify-send -u critical "Beep, Beep"
+URxvt*keysym*M-c:			perl:clipboard:copy
+URxvt*keysym*M-v:			perl:clipboard:paste
+URxvt*url-launcher:			/usr/bin/exo-open
+
+URxvt*scrollTtyOutput:		false
+URxvt*scrollWithBuffer:		true
+URxvt*scrollTtyKeypress:	true
+URxvt*font:					xft:Ubuntu Mono derivative Powerline:size=10
+URxvt*boldfont:				xft:Ubuntu Mono derivative Powerline:bold:size=11
+URxvt*italicfont:			xft:Ubuntu Mono derivative Powerline:italic:size=10
+URxvt*letterSpace:			-1
+URxvt*lineSpace:			3
+URxvt*cursorBlink:			true
+URxvt*scrollBar:			false
+URxvt*urgentOnBell:			true
+URxvt*visualBell:			false
+URxvt*internalBorder:		5
+URxvt*transparent:			false
+URxvt*cutchars:				"()*,<>[]{}|:'"
+URxvt*blurRadius:			3
+URxvt*highlightSelection:	true
+URxvt*colorMode:			on
+URxvt*colorBDMode:			on
+URxvt*colorULMode:			on
+URxvt*underLine:			on
+URxvt*depth:				32
+URxvt*fading:				10
+

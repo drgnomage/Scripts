@@ -1,0 +1,9 @@
+#!/bin/sh
+
+num=$"cat number"
+
+one=$(($num + 1))
+
+echo $one > number
+
+$0 &

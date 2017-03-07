@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Run the RDP session
+rdesktop -5 -K -r clipboard:CLIPBOARD -r sound:local -r disk:share=/home/josh -u support -p ScR00tPsw 172.20.2.3 -g 1598x898 -a 24
+
+# Rerun on closing
+# $0 &

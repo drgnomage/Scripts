@@ -1,0 +1,2 @@
+#!/bin/sh
+/usr/bin/rofi -show run -lines 1 -eh 2 -width 600 -padding 15 -opacity "95" -bw 3 -font "Roboto Mono for Powerline Regular 12" -fuzzy -location 0

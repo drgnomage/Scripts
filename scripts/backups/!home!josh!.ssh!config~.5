@@ -1,0 +1,27 @@
+# global options
+
+# host-specific options
+Host Josh-Antergos-VM
+    User josh
+    IdentityFile ~/.ssh/id_rsa
+    HostName Optiplex-3020
+    Port     22
+
+Host frank
+    User josh
+    IdentityFile ~/.ssh/id_rsa
+    HostName 10.0.0.1
+    Port     22
+
+Host rescue
+    User securus
+    IdentityFile ~/.ssh/id_rsa
+    Hostname 212.46.143.93
+    Port 22
+
+Host macbook
+    User securus
+    IdentityFile ~/.ssh/id_rsa
+    Hostname 172.20.1.67
+    Port 22
+

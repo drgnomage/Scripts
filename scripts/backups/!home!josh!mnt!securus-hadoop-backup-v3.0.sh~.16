@@ -1,0 +1,77 @@
+#!/bin/sh
+###Backup Script v3.0###
+
+# Define parameters
+date=$(date +'%d/%m/%Y')
+time=$(date +'%H:%M:%S')
+location="UK"
+servername=$(cat /etc/hostname)
+scripttype="hadoop-backup"
+nasname="NAS"
+nas="172.20.1.52"
+log="/var/log/securus/$scrypttype/securus-hadoop-backup.log"
+errorlog="/var/log/securus/$scrypttype/securus-hadoop-backup.error"
+
+# If variables
+reach=$(ping $nas -c 1 | grep -c Unreachable)
+logfolder=$(find /var/log/securus/ -name $scripttype | grep -c backup)
+pigz=$(find /usr/bin/ -name pigz | grep -c pigz)
+sshfs=$(find /usr/bin/ -name sshfs | grep -c sshfs)
+mount=$(df -h | grep -c $nas)
+
+
+if [ $logfolder = "0" ] ; then
+mkdir -p /var/log/securus/$scripttype/
+else
+echo "Log folder found"
+fi
+
+
+{
+
+if [ $pigz = 0 ] ; then
+apt-get install pigz -y --force
+fi
+
+if [ $sshfs = 0 ] ; then
+apt-get install sshfs -y --force
+fi
+
+echo "Starting on $date on $time"
+
+if [ $reach = "0" ] ; then
+mkdir -p /mnt/$scripttype/
+sshfs $nas:/$nasname/$servername/securus-hadoop-backup/ /mnt/$scripttype
+mkdir /mnt/$scripttype/$datedirmkdir /mnt/$scripttype/$datedir
+elif [ $reach = 1 ] ; then
+echo "$nasname is unreachable, please make sure $nas is pingable" 
+exit 0
+else
+echo "Error with reach variable, please contact the script creator or implement a fix."
+exit 0
+fi
+
+if [ $mount = "0" ] ; then
+echo "$nasname did not mount correctly"
+exit 0
+elif [ $mount = "1" ] ; then
+tar c --use-compress-program=pigz /var/lib/securus | openssl aes-256-cbc -salt > /mnt/$scripttype/$datedir/securus-$servername-hadoop.tar.gz.aes -k RJP0eLStOYrEOubqm08triGYjo2lDLbRpLGxbegnnXbcnsFdv6
+else 
+echo "Error with the mount variable, please contact the script creator or implement a fix."
+exit 0
+fi
+
+sync
+umount -lv /mnt/$scripttype/
+
+if [ $mount = "0" ] ; then
+echo "$nasname unmounted correctly"
+else 
+echo "Error unmounting the mount variable, please contact the script creator or implement a fix."
+exit 0
+fi
+
+echo "Finishing at $date on $time"
+} >> /var/log/securus/$scripttype/securus-hadoop-backup.log 2> /var/log/securus/$scrypttype/securus-hadoop-backup.error
+
+exit 0

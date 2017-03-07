@@ -1,0 +1,14 @@
+#!/bin/bash
+
+line=`cat ~/mnt/160503\ Customer\ Cancelled\ List\ edit.csv| awk '{print}' ORS=' '`
+
+echo `$line`
+
+if [[ -z "$line" ]] ; then
+echo "Completed"
+exit 0
+else
+echo "Removing $line"
+fi
+
+exit 0

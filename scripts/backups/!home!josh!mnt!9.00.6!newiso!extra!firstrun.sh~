@@ -1,0 +1,191 @@
+#!/bin/sh
+
+echo "########## LOCAL REPOSITORY CONFIGURATION ##########" | tee -a /usr/install/install.log
+cd /usr/install/debs/
+apt-ftparchive packages ./ | gzip -9c > /usr/install/debs/Packages.gz
+sed -i -e '1ideb file:/usr/install/debs/ /' /etc/apt/sources.list
+cp /etc/apt/sources.list /usr/install/sources.list.old
+cp /usr/install/sources.list /etc/apt/sources.list
+cat /etc/apt/sources.list | tee -a /usr/install/install.log
+apt-get update
+apt-get upgrade -y --force-yes
+echo debconf shared/accepted-oracle-license-v1-1 select true | \sudo debconf-set-selections
+echo debconf shared/accepted-oracle-license-v1-1 seen true | \sudo debconf-set-selections
+
+### Custom Josh ###
+
+#dpkg -i -E /usr/install/debs/libs/lib*.deb --force-all | tee -a /usr/install/install.log
+#dpkg -i -E /usr/install/debs/*.deb --force-all | tee -a /usr/install/install.log
+#apt-get install -f -y | tee -a /usr/install/install.log
+tar -xvf /usr/install/jvm.tgz --directory / | tee -a /usr/install/install.log
+update-alternatives --install /usr/bin/java java /usr/lib/jvm/java-6-oracle 1 | tee -a /usr/install/install.log
+ln -s /usr/lib/jvm/java-6-oracle /usr/lib/jvm/java-6-sun
+
+### End of Customisation ###
+
+apt-key add /usr/install/debs/jcameron-key.asc
+
+cp /usr/install/tty1 /etc/init/tty1.conf
+cp /usr/install/console_stub /usr/bin/console_stub
+chmod ug+x /usr/bin/console_stub
+
+echo "##########        REPOSITORY UPDATE       ##########" | tee -a /usr/install/install.log
+apt-get -q update | tee -a /usr/install/install.log
+
+echo "##########      PACKAGES INSTALLATION     ##########" | tee -a /usr/install/install.log
+echo "######################## 1 #########################" | tee -a /usr/install/install.loglib
+apt-get -q -y --force-yes install perl-base  | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install debconf  | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install fontconfig-config  | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install libfontconfig1  | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install fontconfig  | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install libpango-1.0-0 | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install libgraphite2-3 | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install libharfbuzz0b  | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install libpangoft2-1.0-0  | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install libcairo2 libpango-1.0-0 libpangocairo-1.0-0 | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install libltdl7 libdbi1 | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install wireless-regdb crda | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install linux-image-generic linux-image-3.2.0-86-generic | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install linux-headers-generic | tee -a /usr/install/install.log
+echo "######################## 2 #########################" | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install libssh2-1 | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install ntp | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install pigz | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install nmap | tee -a /usr/install/install.log
+echo "######################## mc  #########################" | tee -a /usr/install/install.log
+
+echo debconf shared/accepted-oracle-license-v1-1 select true | \sudo debconf-set-selections
+echo debconf shared/accepted-oracle-license-v1-1 seen true | \sudo debconf-set-selections
+
+apt-get -q -y --force-yes install mc  iftop webmin linux-generic -y | tee -a /usr/install/install.log
+
+echo "######################## 3 #########################" | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install odbcinst1debian2 | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install unixodbc | tee -a /usr/install/install.log
+
+apt-get -q -y -force-yes install odbcinst odbcinst1debian2 libodbc1 unixodbc | tee -a /usr/install/install.log
+
+apt-get -q -y --force-yes install librrds-perl | tee -a /usr/install/install.log
+
+echo "############## OPENJDK INSTALL ####################" | tee -a /usr/install/install.log
+
+apt-get -q -y --force-yes install libjpeg-turbo8 tzdata libnspr4 libnss3-nssdb | tee -a /usr/install/install.log
+
+apt-get -q -y --force-yes install tzdata-java liblcms2-2 libjpeg8 libnss3 | tee -a /usr/install/install.log
+
+apt-get -q -y --force-yes install ca-certificates-java  | tee -a /usr/install/install.log
+
+apt-get -q -y --force-yes install openjdk-6-jre-headless openjdk-6-jre-lib | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install libogg0 libasyncns0 | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install libflac8 libvorbis0a libvorbisenc2 | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install libsndfile1 | tee -a /usr/install/install.log
+
+apt-get -q -y --force-yes install libatk1.0-data hicolor-icon-theme libgdk-pixbuf2.0-common libgdk-pixbuf2.0-0 libgtk2.0-bin libgtk2.0-common libjasper1 libxi6 libxrandr2 libxinerama1 libxfixes3 libxdamage1 libjbig0 libtiff5 libxcomposite1 libxcursor1 | tee -a /usr/install/install.log
+
+apt-get -q -y --force-yes install libatk1.0-0 libgtk2.0-0 libatk-wrapper-java | tee -a /usr/isntall/install.log
+
+apt-get -q -y --force-yes install libasound2 libgif4 libpulse0 libatk-wrapper-java-jni | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install openjdk-6-jre | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install openjdk-6-jdk | tee -a /usr/install/install.log
+
+echo "######################## 4 #########################" | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install libqrencode3 libpam-google-authenticator | tee -a /usr/install/install.log
+
+echo "######################## 5 #########################" | tee -a /usr/install/install.log
+apt-get -q -y --force-yes -f install | tee -a /usr/install/install.log
+
+echo "################ additional installs ###############" | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install unzip htop arp-scan nmon sysstat tree | tee -a /usr/install/install.log
+apt-get -q -y --force-yes install libmysqlclient18 | tee -a /usr/install/install.log
+
+echo "#########        JAVA CONFIGURATION       ##########" | tee -a /usr/install/install.log
+echo "Name: shared/accepted-sun-dlj-v1-1" >> /var/cache/debconf/config.dat
+echo "Template: shared/accepted-sun-dlj-v1-1" >> /var/cache/debconf/config.dat
+echo "Value: true" >> /var/cache/debconf/config.dat
+echo "Owners: sun-java6-bin, sun-java6-jre" >> /var/cache/debconf/config.dat
+echo "Flags: seen" >> /var/cache/debconf/config.dat
+echo "" >> /var/cache/debconf/config.dat
+echo "Name: shared/error-sun-dlj-v1-1" >> /var/cache/debconf/config.dat
+echo "Template: shared/error-sun-dlj-v1-1" >> /var/cache/debconf/config.dat
+echo "Owners: sun-java6-bin, sun-java6-jre" >> /var/cache/debconf/config.dat
+echo "" >> /var/cache/debconf/config.dat
+echo "Name: shared/present-sun-dlj-v1-1" >> /var/cache/debconf/config.dat
+echo "Template: shared/present-sun-dlj-v1-1" >> /var/cache/debconf/config.dat
+echo "Value:" >> /var/cache/debconf/config.dat
+echo "Owners: sun-java6-bin, sun-java6-jre" >> /var/cache/debconf/config.dat
+echo "Flags: seen" >> /var/cache/debconf/config.dat
+
+echo "##########      SECURUS INSTALLATION      ##########" | tee -a /usr/install/install.log
+dpkg -i /usr/install/debs/securus/securus.deb | tee -a /usr/install/install.log
+service securus stop | tee -a /usr/install/install.log
+#mv /opt/securus /opt/securus_old
+#tar xvf /usr/install/9.00.5.tar.gz --directory /opt/
+
+sed -e "s/Content-Type: application/Content-Type: text/g;s/xhtml+xml; charset=utf-8/html/g" -i /var/www/collection.cgi 
+
+echo "#########       CUSTOM CONFIGURATION      ##########" | tee -a /usr/install/install.log
+sed -e "s/Content-Type: application/Content-Type: text/g;s/xhtml+xml; charset=utf-8/html/g" -i /var/www/collection.cgi
+cp -R /usr/install/webmin/ /etc/
+tar -xvf /usr/install/webminbackup.tgz --directory /
+cp /usr/install/index.php /var/www/
+chmod 644 /var/www/index.php
+rm /var/www/index.html
+touch /tmp/securus.err
+touch /var/log/securus/securus_monitor.log
+chmod 666 /tmp/securus.err
+chmod 666 /var/log/securus/securus_monitor.log
+
+mkdir /var/www/webtools
+cp -rf /opt/securus/diagnostics/webtools/* /var/www/webtools/
+chmod -R o+rx /var/www/webtools
+
+echo "#########         REPOSITORY RESET        ##########" | tee -a /usr/install/install.log
+cp /etc/apt/sources.list /etc/apt/sources.list.bak
+cp -rf /usr/install/sources.list /etc/apt/sources.list
+apt-get -q update 
+
+
+echo "##########           MYSQL RESET          ##########" | tee -a /usr/install/install.log
+mysql -u root -e "SET PASSWORD='*EA0BAE0AC4344C6CF4AE11AE2620C0B5E05033C9';"
+
+
+echo "########## 2-FACTOR AUTHENTICATION SETUP  ##########" | tee -a /usr/install/install.log
+cp -rfT /usr/install/google_authenticator /root/.google_authenticator | tee -a /usr/install/install.log
+chmod 400 /root/.google_authenticator | tee -a /usr/install/install.log
+printf "\nauth required pam_google_authenticator.so\n" >>/etc/pam.d/sshd
+sed -i.bak 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/1; s/PermitRootLogin without-password/PermitRootLogin yes/1' /etc/ssh/sshd_config
+
+echo "##########       ORIGINAL GRUB CONF       ##########" | tee -a /usr/install/install.log
+cat /etc/default/grub | tee -a /usr/install/install.log
+echo "##########       ORIGINAL GRUB CONF       ##########" | tee -a /usr/install/install.log
+cp /usr/install/grub /etc/default/grub
+update-grub | tee -a /usr/install/install.log
+
+echo "##########     FIREWALL CONFIGURATION     ##########" | tee -a /usr/install/install.log
+ufw enable | tee -a /usr/install/install.log
+#ufw reset | tee -a /usr/install/install.log
+ufw allow 87/udp | tee -a /usr/install/install.log
+ufw allow 2087/udp | tee -a /usr/install/install.log
+ufw allow 22/tcp | tee -a /usr/install/install.log
+ufw allow 8080/tcp | tee -a /usr/install/install.log
+ufw allow 8081/tcp | tee -a /usr/install/install.log
+ufw allow 8161/tcp | tee -a /usr/install/install.log
+ufw allow 10000/tcp | tee -a /usr/install/install.log
+ufw status verbose | tee -a /usr/install/install.log
+
+echo "##########   Setting Up Cron and Reboot   ##########" | tee -a /usr/install/install.log
+cp /usr/install/reboot.sh /root/.reboot.sh
+chown root /root/.reboot.sh
+chmod 770 /root/.reboot.sh
+crontab /usr/install/mycron
+
+echo "##########      CLEAN UP & REBOOT         ##########" | tee -a /usr/install/install.log
+apt-get update | tee -a /usr/install/install.log
+apt-get install -f -y | tee -a /usr/install/install.log
+cp /usr/install/sources.list.old /etc/apt/sources.list
+apt-get update | tee -a /usr/install/install.log
+apt-get install -f -y | tee -a /usr/install/install.log
+apt-get update | tee -a /usr/install/install.log
+rm /etc/rc2.d/S99firstrun
+reboot
