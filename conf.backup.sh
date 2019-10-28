@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Rerun script as root
 [ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
 
 list="/root/.found.txt"

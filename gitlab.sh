@@ -1,3 +1,5 @@
+#!/bin/bash
+
 docker run --detach --name gitlab \
         --hostname gitlab.glitchbusters.info \
         --publish 30080:30080 \
