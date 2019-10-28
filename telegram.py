@@ -35,10 +35,10 @@ def send_message(chat, link):
 	return response
 
 if sys.argv[2] == "mine":
-	url = "https://api.telegram.org/bot476765644:AAFo0fTJC6ecHA87XhJ1o5YkFI9L-d019fw/"
+	url = "API-URL"
 	chat_id = "103778131"
 elif sys.argv[2] == "caturday":
-	url = "https://api.telegram.org/bot450362502:AAEiXB-46WqeHGMLDvAbXZ3lIG6TXObi_Us/"
+	url = "API-URL"
 	chat_id = "-163150692"
 else:
 	print("Please specify a message type and a chat to send to. echo $link ./telegram.py photo mine")

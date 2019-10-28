@@ -11,8 +11,6 @@ import sys
 home=os.getenv("HOME")
 
 API_KEY=(open(home+"/.aws/API_KEY", "r").read().strip())
-#API_KEY="pbd93ELLTv3qe0FU9bkIA7ezLZBg2dxA51c33T3n"
-#API_URL="https://ha4hkn976g.execute-api.eu-west-2.amazonaws.com/A"
 API_URL=(open(home+"/.aws/API_URL", "r").read().strip())
 
 
