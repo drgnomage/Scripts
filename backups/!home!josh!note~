@@ -1,2 +1,0 @@
-yaourt -Rsc plat-icon-theme wpgtk-git bluedevil-git bluez-qt-git cryfs-git noefetch-git 
-yaourt -S firefox-git

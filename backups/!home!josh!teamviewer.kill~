@@ -1,1 +1,0 @@
-for i in 10241 ; do kill -9 9610 ; done

@@ -1,9 +1,0 @@
-#!/bin/sh
-
-num=$1
-
-one=$(($num + 1))
-
-echo $one | $2
-
-$0 &

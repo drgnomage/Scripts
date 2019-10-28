@@ -1,7 +1,0 @@
-# global options
-User josh
-
-# host-specific options
-Host 3020
-    HostName Optiplex-3020
-    Port     22

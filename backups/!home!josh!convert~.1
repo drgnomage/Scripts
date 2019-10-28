@@ -1,5 +1,0 @@
-#!/bin/bash
-
-for a in `find "/home/josh/mnt/Music/Blue\ Oyster\ Cult\ 12\ Albums\ 24\ Bit\ 96Khz\ Vinyl\ \ FLAC\ ANDYT1000\ KAT/" -name "*.flac"`; do
-  ffmpeg -i "$a" -qscale:a 0 "${a[@]/%flac/mp3}"
-done

@@ -1,6 +1,0 @@
-#!/bin/bash
-
-line=`tail -n 1 ~/mnt/160503\ Customer\ Cancelled\ List.csv`
-
-echo $line
-

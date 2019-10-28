@@ -1,9 +1,0 @@
-#!/bin/sh
-
-num=$1
-cat=`echo $2`
-one=$(($cat + 1))
-
-echo $one > /home/josh/number
-
-$0 &

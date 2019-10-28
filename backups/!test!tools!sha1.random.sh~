@@ -1,4 +1,0 @@
-#!/bin/sh
-
-for i in random*; do sha1sum "$i" >> random.sha1 ; done
-

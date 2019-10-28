@@ -1,8 +1,0 @@
-if [ -d "$HOME/scripts" ] ; then
-  PATH="$PATH:$HOME/scripts"
-fi
-export http_proxy="http://dale:12345678@195.154.68.179:3128/"
-export https_proxy="http://dale:12345678@195.154.68.179:3128/"
-export tfp_proxy="http://dale:12345678@195.154.68.179:3128/"
-export ftp_proxy="http://dale:12345678@195.154.68.179:3128/"
-export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"

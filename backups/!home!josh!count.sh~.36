@@ -1,9 +1,0 @@
-#!/bin/sh
-
-number=/home/josh/number
-value=`cat $number`
-one=$((`$value + 1`))
-
-echo $one > $number
-
-$0 &

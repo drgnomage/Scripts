@@ -1,2 +1,0 @@
-#!/bin/sh
-rofi -show run -lines 9 -eh 2 -width 1600 -padding 211 -opacity "98" -bw 0 -bc "#31363D" -bg "#31363D" -font "Ubuntu Mono derivative Powerline Regular 16" -fg "#D3D7CF" -location 6

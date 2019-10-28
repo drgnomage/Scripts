@@ -1,2 +1,0 @@
-@reboot sshfs -o allow_other 172.20.1.52: ~/mnt
-0 3 * * * stress --cpu 8 --io 4 --vm 2 --vm-bytes 4096M --timeout 30s

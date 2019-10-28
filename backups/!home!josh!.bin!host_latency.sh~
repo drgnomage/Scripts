@@ -1,7 +1,0 @@
-IP=$1
-
-if ping $IP -c 2 -q > /dev/null 2>&1 ; then
-	echo $(ping -c 1 $IP | sed -n '/time=/s/.*time=\(.*\)\..*/\1ms /p')
-else
-	echo "\${color red}offline"
-fi

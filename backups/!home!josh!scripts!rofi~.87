@@ -1,5 +1,0 @@
-#!/bin/sh
-
-PATH="/home/josh/scripts:/usr/bin"
-
-/usr/bin/rofi -modi combi -show combi

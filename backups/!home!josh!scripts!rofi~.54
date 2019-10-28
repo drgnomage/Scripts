@@ -1,3 +1,0 @@
-#!/bin/sh
-rofi -show run -lines 7 -eh 2 -width 1400 -padding 50 -opacity "100" -bw 0 -font "Roboto Mono for Powerline Regular 12" -fuzzy -location 2
-#rofi -show run -lines 3 -eh 2 -width 1200 -padding 35 -opacity "95" -bw 0 -bc "#31363D" -bg "#31363D" -font "Roboto Mono for Powerline Regular 14" -fg "#D3D7CF" -fuzzy -location 2
