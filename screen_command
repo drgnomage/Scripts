@@ -1,0 +1,7 @@
+#!/bin/bash
+
+os=$(lsb_release -d | awk '{print $2}')
+version=$(lsb_release -r | awk '{print $2}')
+kernel=$(uname -r)
+
+echo $os $version $kernel

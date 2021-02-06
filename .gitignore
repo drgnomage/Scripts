@@ -1,1 +1,4 @@
 *.log
+secrets.*
+magnets.list
+steps.json*
