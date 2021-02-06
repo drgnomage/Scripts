@@ -17,11 +17,12 @@ def hello():
 def camera():
 	PASS = "QEF1632YUH64"
 	KEY = request.values.get('KEY')
-	print("URL: " + str(URL), "KEY: " + str(KEY), sep='\t')
+	TIME = request.values.get('TIME')
+	print("KEY: " + str(KEY), sep='\t')
 	if KEY == PASS:
 		print("Turning off.")
-		os.system("sleep 15 ; echo systemctl suspend &")
-		return("Turning off.\n")
+		os.system("echo \"sleep " + str(TIME) + " ; systemctl suspend \" | at now")
+		return("Turning off in " + str(TIME) + " seconds.\n")
 	elif KEY != PASS:
 		return("KEY value is incorrect.\n")
 	else:

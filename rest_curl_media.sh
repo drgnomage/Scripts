@@ -11,5 +11,5 @@ curl -X POST \
 	-H 'Content-Type: application/x-www-form-urlencoded' \
 	-H 'Connection: keep-alive' \
 	-d "KEY="$KEY \
-	"http://"$ADDR":6001/shutdown/"
+	"http://$ADDR:6001/shutdown/"
 
